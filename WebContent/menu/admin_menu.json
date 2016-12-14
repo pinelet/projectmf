@@ -1,0 +1,32 @@
+[{
+	"id":1,
+	"text":"项目管理",
+	"state":"open",
+	"children":[
+		{
+			"id":"p1",
+			"text":"项目信息管理",
+			"attributes":{"url":"/project/plist.jsp"}
+		},{
+			"id":"p2",
+			"text":"WBS管理",
+			"attributes":{"url":"/project/wbs.jsp"}
+		},{
+			"id":"p3",
+			"text":"任务管理",
+			"attributes":{"url":"/project/task.jsp"}
+		}
+	]},{
+	"id":2,
+	"text":"系统管理",
+	"state":"closed",
+	"children":[{
+		"id":"u1",
+		"text":"组织管理",
+		"attributes":{"url":"/sys/"}
+	},{
+		"id":"u2",
+		"text":"用户信息管理",
+		"attributes":{"url":"/sys/"}
+	}]
+}]
