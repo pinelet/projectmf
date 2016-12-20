@@ -36,10 +36,14 @@ public class _MappingKit {
 		arp.addMapping("method_tcp", "id", MethodTcp.class);
 		arp.addMapping("method_wcp", "id", MethodWcp.class);
 		arp.addMapping("organization", "id", Organization.class);
+
 		arp.addMapping("project", "id", Project.class);
+
 		arp.addMapping("project_control_method", "id", ProjectControlMethod.class);
+
 		arp.addMapping("project_health", "id", ProjectHealth.class);
 		arp.addMapping("project_phase", "id", ProjectPhase.class);
+
 		arp.addMapping("project_role", "id", ProjectRole.class);
 		arp.addMapping("project_target", "id", ProjectTarget.class);
 		arp.addMapping("risk_possibility", "id", RiskPossibility.class);
@@ -47,6 +51,7 @@ public class _MappingKit {
 		arp.addMapping("system_profile", "id", SystemProfile.class);
 		arp.addMapping("task", "id", Task.class);
 		arp.addMapping("user", "id", User.class);
+
 		arp.addMapping("wbs", "id", Wbs.class);
 		arp.addMapping("wbs_action", "id", WbsAction.class);
 		arp.addMapping("wbs_schedule", "id", WbsSchedule.class);

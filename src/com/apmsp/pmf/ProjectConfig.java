@@ -14,6 +14,7 @@ import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+import com.jfinal.plugin.activerecord.tx.TxByMethodRegex;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 
@@ -38,6 +39,9 @@ public class ProjectConfig extends JFinalConfig {
 		me.addGlobalActionInterceptor(new AuthInterceptor());
 		// 添加业务层全局拦截器
 		//me.addGlobalServiceInterceptor(new GlobalServiceInterceptor());
+		
+		//添加方法名事务
+		me.add(new TxByMethodRegex("(.*save.*|.*update.*)"));
 		
 	}
 

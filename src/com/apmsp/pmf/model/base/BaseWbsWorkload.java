@@ -49,4 +49,12 @@ public abstract class BaseWbsWorkload<M extends BaseWbsWorkload<M>> extends Mode
 		return get("name");
 	}
 
+	public void setExpectedEditableValue(java.lang.Integer expectedEditableValue) {
+		set("expected_editable_value", expectedEditableValue);
+	}
+
+	public java.lang.Integer getExpectedEditableValue() {
+		return get("expected_editable_value");
+	}
+
 }

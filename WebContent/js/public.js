@@ -5,12 +5,26 @@
  */
 
 //转化日期格式
-var dateformatter = function(date) {
+function dateFormatter(date){
 	var y = date.getFullYear();
-	var m = date.getMonth() + 1;
+	var m = date.getMonth()+1;
 	var d = date.getDate();
-	return y + "-" + m + "-" + d;
-};
+	return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+}
+
+//转化日期格式
+function dateParser(s){
+	if (!s) return new Date();
+	var ss = (s.split('-'));
+	var y = parseInt(ss[0],10);
+	var m = parseInt(ss[1],10);
+	var d = parseInt(ss[2],10);
+	if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+		return new Date(y,m-1,d);
+	} else {
+		return new Date();
+	}
+}
 
 //转化人员状态
 var p_personstatus = function(value, row, index) {
@@ -19,8 +33,6 @@ var p_personstatus = function(value, row, index) {
 	else
 		return '冻结';
 };
-
-
 
 
 //+---------------------------------------------------  
@@ -40,6 +52,23 @@ function daysBetween(DateOne,DateTwo)
   return Math.abs(cha);  
 } 
 
+//Json化表单数据，需要jquery支持
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
 
 //计算比较传入时间与目前相差的天数
 //如果相差天数小于defaulttime则为报警1，如果相差天数大于defaulttime则为正常0，如果相差天数小于0则为失效2
@@ -53,6 +82,13 @@ function compareDate(d1, defaulttime) {
 	    else if (day <= 0) return 2;
 	} catch (e){}
 	return 0;
+}
+
+//日期增加指定的天数
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
 }
 
 //判断主键是否存在

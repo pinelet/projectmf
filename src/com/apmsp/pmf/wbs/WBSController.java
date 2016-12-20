@@ -18,7 +18,8 @@ public class WBSController extends Controller {
 		long rootid = Long.parseLong(req);
 		if (rootid == 0L) {
 			//目前默认配置的wbs根节点id为0
-			wbs = wbs.replaceFirst(":0,", ":" + System.currentTimeMillis() + ",");
+			long wbsid = (long)getSession().getAttribute("wbsid");
+			wbs = wbs.replaceFirst(":0,", ":" + wbsid + ",");
 		}
 		renderJson(wbs);
 	}

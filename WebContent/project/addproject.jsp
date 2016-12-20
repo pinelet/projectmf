@@ -3,77 +3,59 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
-	<div id="addprojectpanel" class="easyui-accordion" data-options="fit:true, border:false">
+	<div id="addprojectpanel" class="easyui-accordion" data-options="fit:true, border:false, onSelect: validBaseInfo">
 		<div title="基本信息" style="padding:0px">
-			<form id="ff" method="post">
-			<table border="0" class="normal">
-				<caption>基本信息</<caption>
-				<tr class="normal">
-					<td class="normal"><label for="name">项目编号:</label></td>
-					<td class="normal"><input class="easyui-validatebox" type="text" name="name" data-options="required:true" /></td>
-					<td class="normal"><label for="email">项目名称:</label></td>
-					<td class="normal"><input class="easyui-validatebox" type="text" name="email" data-options="validType:'email'"/></td>
-				</tr>
-				<tr class="normal">
-					<td class="normal"><label for="sd">预计开始:</label></td>
-					<td class="normal"><input id="sd" name="sd" type="text" class="easyui-datebox" required="required"></td>
-					<td class="normal"><label for="ed">预计完成:</label></td>
-					<td class="normal"><input id="ed" name="ed" type="text" class="easyui-datebox" required="required"></td>
-				</tr>
-				<tr class="normal">
-					<td class="normal"><label for="edur">预计工期:</label></td>
-					<td class="normal"><input type="text" name="edur" class="easyui-numberbox" value="100" data-options="min:0">
-						<select name="select" id="select">
-		                  <option value="小时">小时</option>
-		                  <option value="日历天">日历天</option>
-		                  <option selected="selected" value="工作日">工作日</option>
-		                  <option value="周">周</option>
-		                  <option value="月">月</option>
-		                  <option value="季">季</option>
-		                  <option value="年">年</option>
-		                </select>
-                	</td>
-					<td class="normal"><label for="esize">预计规模:</label></td>
-					<td class="normal"><input type="text" name="esize" class="easyui-numberbox" value="100" data-options="min:0">
-						<select name="select2" id="select2">
-		                  <option value="人时">人时</option>
-		                  <option selected="selected" value="人天">人天</option>
-		                  <option value="人月">人月</option>
-		                  <option value="人年">人年</option>
-		                </select>
-					</td>
-				</tr>
-				<tr class="normal">
-					<td class="normal"><label for="pname">项目经理</label></td>
-					<td class="normal"><input id="pname" class="easyui-combobox" name="pname" data-options="valueField:'pid',
-																							 textField:'pname',
-																							 url:'<c:url value='/project/user'/>',
-																							 width:'100',
-																							 panelHeight:'100',
-																							 onLoadSuccess:function() {$('#pname').combobox('select','请选择');}"></td>
-					<td class="normal"><label for="pfile">项目类型</label></td>
-					<td class="normal"><input id="pfile" name="pfile" class="easyui-combobox" data-options="valueField:'id',
-																							 textField:'name',
-																							 url:'<c:url value='/project/psimfile'/>',
-																							 width:'100',
-																							 panelHeight:'60',
-																							 onLoadSuccess:function() {$('#pfile').combobox('select','请选择');}"><a href="#">模板预览</a></td>
-				</tr>
-				<tr class="normal">
-					<td class="normal"><label for="pfile">项目描述</label></td>
-					<td class="normal" colspan="3"><textarea rows="8" cols="100" placeholder="简要说明"></textarea> </td>
-				</tr>
-				<tr class="normal">
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td class="normal">
-					<a href="#" onclick="javascript:$('#addprojectpanel').accordion('select',1);">下一步</a>
-					<a href="#">保存并离开</a>
-					</td>
-				</tr>
-			</table>
-			</form>
+		<form id="ff" method="post">
+			<div style="padding:10px">
+				<input id="bid" class="easyui-textbox" label="项目编号:" type="text" name="projectbid" data-options="width:300,required:true" />
+  				<input id="name" class="easyui-textbox" label="项目名称:" type="text" name="projectname" data-options="width:300,required:true"/>
+			</div>
+			<div style="padding:10px">
+				<input id="basesd" name="basesd" type="text">
+				<input id="baseed" name="baseed" type="text">
+			</div>
+			<div style="padding:10px">
+				<input type="text" name="edur" label="预计工期:"  class="easyui-numberbox" value="100" data-options="min:0, width:300">
+					<select name="timeunit" id="timeunit">
+	                  <option value="Hour">小时</option>
+				      <option value="SDay">日历天</option>
+				      <option value="WDay" selected>工作日</option>
+				      <option value="Week">周</option>
+				      <option value="Mouth">月</option>
+				      <option value="Quarter">季</option>
+				      <option value="Year">年</option>
+	                </select>
+	             <input type="text" name="esize" label="预计规模:" class="easyui-numberbox" value="100" data-options="min:0, width:300">
+					<select name="sizeunit" id="sizeunit">
+	                  <option value="PHour">人时</option>
+				      <option value="PDay" selected>人天</option>
+				      <option value="PMouth">人月</option>
+				      <option value="PYear">人年</option>
+	                </select>
+			</div>
+			<div style="padding:10px">
+				<input id="pid" name="pid" label="项目经理" class="easyui-combobox" name="pname" data-options="valueField:'pid',
+																						 textField:'pname',
+																						 url:'<c:url value='/project/user'/>',
+																						 width:300,
+																						 panelHeight:100,
+																						 required:true,
+																						 onLoadSuccess:function() {$('#pid').combobox('select','请选择');}">
+				<input id="pfile" name="pfile" label="项目类型" class="easyui-combobox" data-options="valueField:'id',
+																						 textField:'name',
+																						 url:'<c:url value='/project/psimfile'/>',
+																						 width:300,
+																						 panelHeight:60,
+																						 required:true,
+																						 onLoadSuccess:function() {$('#pfile').combobox('select','请选择');}"><a href="#">模板预览</a>
+			</div>
+			<div style="padding:10px">
+				<input id="comment" name="comment" label="项目描述" labelPosition="top" class="easyui-textbox" data-options="multiline:true" style="height:150px;width:600px" placeholder="简要说明">
+			</div>
+			<div style="padding:10px">
+				<a href="#" onclick="saveBaseInfo();">保存并下一步</a>
+			</div>
+		</form>
 		</div>
 		<div title="初始计划" style="padding:0px">
 			<table id="wbstg" class="easyui-treegrid" data-options="fit:true, 
@@ -133,30 +115,87 @@
 			</div-->
 		</div>
 		<div title="项目团队" style="padding:0px">
-			<div id="ulistout" style="float: left; width: 40%">
-				<div class="easyui-datalist" title="可选成员" style="float: right; fit:true" data-options="url:'<c:url value='/project/user'/>', 
-					method:'get',
-					valueField:'pid',
-					textField:'pname',
-					singleSelect: false,
-					onLoadSuccess:function(data) {console.log(data);}">
+			<div style="float:center">
+				<div style="padding:5px;float: left; width: 40%">
+					<div  id="ulistout" class="easyui-datalist" title="可选成员" style="float: right; fit:true" data-options="url:'<c:url value='/project/user'/>', 
+						method:'get',
+						valueField:'pid',
+						textField:'pname',
+						singleSelect: false,
+						onLoadSuccess:function(data) {console.log(data);}">
+					</div>
+				</div>
+				<div style="padding:5px;float: left; width: 15%;">
+					<p style="text-align:center; ">
+					<a href="#" onclick="checkin();">》》》</a><br><a href="#" onclick="checkout();">《《《</a>
+					</p>
+				</div>
+				<div style="padding:5px;float:left; width: 40%">
+					<div id="ulistin" class="easyui-datalist" title="已选成员" style="float: right; fit:true" data-options="url:'<c:url value='/project/puser/0'/>', 
+						method:'get',
+						valueField:'pid',
+						textField:'pname',
+						checkbox:true,
+						onLoadSuccess:function(data) {console.log(data);}">
+					</div>
 				</div>
 			</div>
-			<div style="float: left; width: 20%">
-				<a href="#">》》》</a><br><a href="#">《《《</a>
-			</div>
-			<div id="ulistin" style="float:left; width: 40%">
-				<div class="easyui-datalist" title="已选成员" style="float: right; fit:true" data-options="url:'<c:url value='/project/user'/>', 
-					method:'get',
-					valueField:'pid',
-					textField:'pname',
-					singleSelect: false,
-					onLoadSuccess:function(data) {console.log(data);}">
-				</div>
+			<div style="padding:10px;float:right">
+				<label>*请勾选</label>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
+
+		$(function($) {
+			//初始化开始日期
+			$('#basesd').datebox({
+				label:"预计开始:",
+				required:true,
+				width:300,
+				formatter:dateFormatter,
+				parser:dateParser
+			});
+			//初始化完成日期
+			$('#baseed').datebox({
+				label:"预计完成:",
+				required:true,
+				width:300,
+				formatter:dateFormatter,
+				parser:dateParser
+			});
+	  		var opts = $('#basesd').datebox('options');
+	  		var opte = $('#baseed').datebox('options');
+	        $('#basesd').datebox('setValue', opts.formatter(new Date()));
+	        //完成日期默认加30天
+			$('#baseed').datebox('setValue', opte.formatter(addDays(new Date().getTime(), 30)));
+		});
+		//验证是否保存项目基本信息
+		var validBaseInfo = function(title, index) {
+			if (index != 0 && !isSave) {
+				$('#addprojectpanel').accordion('select',0);
+				alert("请先保存项目的基本信息！");		
+			}
+		};
+		
+		var wbsid;
+		var isSave = false;
+		//保存项目基本信息
+		var saveBaseInfo = function() {
+			if ($('#ff').form('validate')) {
+				var data = $('#ff').serializeObject();
+				console.log(data);
+				$.post('<c:url value="/project/saveBase"/>',data, function(r){
+				    	if (r.status) {
+					        wbsid = r.id;
+					        isSave = true;
+					        alert("保存成功");
+					        $('#wbstg').treegrid('reload');
+				    	}
+				    	else alert("保存失败：" + r.status);
+				    },'json');
+			}
+		}
 		var editIndex = undefined;
 		function endEditing(){
 			if (editIndex == undefined){return true;}
@@ -207,7 +246,7 @@
 		var rooIdIndex;
  		var idIndex;
 		//增加节点操作
-		function append(){
+		function append() {
 			//必须结束上一个节点的编辑
 			if (!endEditing()) {
 				$('#wbstg').treegrid('select', editIndex.id);
@@ -244,6 +283,23 @@
                 }); 
 			}
 			else alert("请选择一个任务节点."); 
+		}
+		
+		//左侧人员检出到右侧
+		function checkin() {
+			var slist = $('#ulistout').datalist('getSelections');
+			for (var i = 0; i < slist.length; i++) {
+				$('#ulistin').datalist('appendRow',slist[i]);
+			}
+			
+		}
+		
+		//右侧人员检出到左侧
+		function checkout() {
+			var slist = $('#ulistin').datalist('getSelections');
+			for (var i = 0; i < slist.length; i++) {
+				$('#ulistout').datalist('appendRow',slist[i]);
+			}
 		}
 	</script>
 </body>

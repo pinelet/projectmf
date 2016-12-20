@@ -12,7 +12,6 @@
 <title>登录页面</title>
 <link rel="stylesheet" type="text/css" href="<c:url value='/js/themes/default/easyui.css'/>" />
 <link rel="stylesheet" type="text/css" href="<c:url value='/js/themes/icon.css'/>" />
-<link rel="stylesheet" type="text/css" href="<c:url value='/css/style.css'/>" />
 <script type="text/javascript" src="<c:url value='/js/jquery-1.8.0.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery.easyui.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/public.js'/>"></script>  

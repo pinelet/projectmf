@@ -32,7 +32,7 @@
 
 </style>
 	</style>
-	<script type="text/javascript" src="<c:url value='/js/jquery-1.8.0.min.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/js/jquery.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/jquery.easyui.min.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/public.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/js/jquery.portal.js'/>"></script>

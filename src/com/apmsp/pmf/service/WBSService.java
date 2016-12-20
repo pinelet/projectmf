@@ -35,7 +35,7 @@ public class WBSService {
 	/**
 	 * 读取WBS记录文件
 	 * @param local 文件目录位置
-	 * @param pid 
+	 * @param pid wbsid 系统默认的wbs的ID为0
 	 * @return
 	 */
 	private static String readerWBSFile(String local, Long pid) {
